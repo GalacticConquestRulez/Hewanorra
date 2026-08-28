@@ -62,6 +62,28 @@ the `.name` and the `.sub` text. The four booking cards
 (`.card--book`) open Calendly in an overlay; the script skips any card whose
 `href` is still `#`, so nothing loads from Calendly until a real URL is in.
 
+## Connecting the contact form
+
+The form posts to Formspree. To wire it up, set the endpoint near the top of
+the page's second `<script>` block:
+
+```js
+var FORMSPREE_ENDPOINT = "https://formspree.io/f/xxxxxxxx";
+```
+
+That is the only change needed. Setting it also gives the form a real
+`action`, so it still works for anyone with JavaScript off — Formspree
+accepts the plain POST and shows its own confirmation page.
+
+While the value is empty the form still validates, but sends nothing and
+says so, pointing people at the phone number instead. That way it can be
+demoed without silently swallowing a real enquiry.
+
+The form includes Formspree's `_gotcha` honeypot for spam, and sets
+`_subject` so notification emails are identifiable.
+
+## Editing the links
+
 Two things worth knowing before changing them:
 
 - **The subdomain is baked in.** The canonical URL and the OpenGraph and

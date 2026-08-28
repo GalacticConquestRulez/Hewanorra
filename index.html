@@ -386,6 +386,122 @@
     transform: translate(2px, -2px);
   }
 
+  /* ---------- Contact form ----------
+     The fields sit almost invisible over the footage and gain body as soon
+     as they are focused or hold text, so the form reads as part of the
+     water at rest and as a solid surface while it is being filled in. */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  /* Placeholders carry the label at rest, so the real labels are kept for
+     screen readers rather than dropped. */
+  .vh {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .contact input,
+  .contact textarea {
+    width: 100%;
+    font-family: var(--body);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--text);
+    padding: 0.8rem 1.15rem;
+    border-radius: 999px;
+    border: 1px solid rgba(124, 192, 255, 0.24);
+    background: rgba(12, 36, 66, 0.16);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    outline: none;
+    transition: background-color 240ms ease, border-color 240ms ease,
+                box-shadow 240ms ease, backdrop-filter 240ms ease;
+  }
+
+  .contact textarea {
+    border-radius: 1.35rem;
+    min-height: 6.5rem;
+    resize: vertical;
+  }
+
+  .contact ::placeholder {
+    color: rgba(233, 241, 248, 0.72);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92);
+  }
+
+  /* Focused, or holding text: the pill takes on weight. */
+  .contact input:focus,
+  .contact textarea:focus,
+  .contact input:not(:placeholder-shown),
+  .contact textarea:not(:placeholder-shown) {
+    background: rgba(12, 36, 66, 0.74);
+    border-color: rgba(124, 192, 255, 0.62);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.2);
+  }
+
+  .contact input:focus,
+  .contact textarea:focus {
+    box-shadow: 0 0 0 3px rgba(74, 163, 240, 0.24);
+  }
+
+  .contact button {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+    padding: 0.85rem 1.15rem;
+    border-radius: 999px;
+    border: 1px solid rgba(124, 192, 255, 0.5);
+    background:
+      linear-gradient(135deg, rgba(124, 192, 255, 0.24), rgba(74, 163, 240, 0.08) 55%),
+      rgba(12, 36, 66, 0.6);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    backdrop-filter: blur(14px) saturate(1.2);
+    cursor: pointer;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  }
+
+  .contact button:hover { border-color: var(--flash-hot); transform: translateY(-2px); }
+  .contact button:active { transform: translateY(0); }
+  .contact button:focus-visible { outline: 2px solid var(--flash); outline-offset: 3px; }
+  .contact button[disabled] { opacity: 0.6; cursor: default; transform: none; }
+
+  /* Spam trap: a real field, hidden from people and left empty by them. */
+  .contact .gotcha {
+    position: absolute;
+    left: -5000px;
+    width: 1px; height: 1px;
+    overflow: hidden;
+  }
+
+  .form-status {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: var(--chrome);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
+  }
+
+  .form-status:empty { display: none; }
+  .form-status.ok { color: #86e6b4; }
+  .form-status.bad { color: #ff9d8a; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact input, .contact textarea, .contact button { transition: none; }
+    .contact button:hover { transform: none; }
+  }
+
   /* ---------- Footer ---------- */
   .foot {
     position: relative;
@@ -710,6 +826,44 @@
     </a>
   </section>
 
+  <section class="group">
+    <div class="group-head">
+      <h2>Send a Message</h2>
+      <span class="rule"></span>
+    </div>
+
+    <!-- Posts to Formspree. The endpoint is set in FORMSPREE_ENDPOINT below;
+         until it holds a real value the form refuses to send rather than
+         posting nowhere. -->
+    <form class="contact" id="contact-form" method="POST" novalidate>
+      <label class="vh" for="cf-name">Your name</label>
+      <input id="cf-name" name="name" type="text" placeholder="Your name"
+             autocomplete="name" required />
+
+      <label class="vh" for="cf-email">Email address</label>
+      <input id="cf-email" name="email" type="email" placeholder="Email address"
+             autocomplete="email" required />
+
+      <label class="vh" for="cf-phone">Phone or WhatsApp (optional)</label>
+      <input id="cf-phone" name="phone" type="tel" placeholder="Phone or WhatsApp (optional)"
+             autocomplete="tel" />
+
+      <label class="vh" for="cf-message">How can we help?</label>
+      <textarea id="cf-message" name="message" placeholder="How can we help? Dates, number of guests, where you're staying…"
+                required></textarea>
+
+      <!-- Formspree reads these: the notification subject, and its spam trap. -->
+      <input type="hidden" name="_subject" value="New enquiry from link.hewanorraexpress.com" />
+      <div class="gotcha" aria-hidden="true">
+        <label for="cf-gotcha">Leave this field empty</label>
+        <input id="cf-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <button type="submit" id="cf-submit">Send Message</button>
+      <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
   <footer class="foot">
     <button class="share" type="button" id="share">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -813,6 +967,66 @@
       });
     };
     document.head.appendChild(s);
+  })();
+
+  /* Contact form → Formspree.
+     ---------------------------------------------------------------
+     TO CONNECT: paste the Formspree endpoint below, e.g.
+       var FORMSPREE_ENDPOINT = "https://formspree.io/f/abcdwxyz";
+     Nothing else needs changing. While it is empty the form validates
+     and reports that it is not connected yet, but sends nothing — so it
+     can be demoed without silently dropping a real enquiry.
+     --------------------------------------------------------------- */
+  var FORMSPREE_ENDPOINT = "";
+
+  (function () {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+    var btn = document.getElementById("cf-submit");
+    var status = document.getElementById("cf-status");
+
+    var say = function (msg, kind) {
+      status.textContent = msg;
+      status.className = "form-status" + (kind ? " " + kind : "");
+    };
+
+    // With an endpoint set, the form also works without JS: Formspree accepts
+    // a normal POST and shows its own confirmation page.
+    if (FORMSPREE_ENDPOINT) form.setAttribute("action", FORMSPREE_ENDPOINT);
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (!FORMSPREE_ENDPOINT) {
+        say("This form isn't connected yet — please call or WhatsApp +1 (758) 721-1185 in the meantime.", "bad");
+        return;
+      }
+
+      btn.disabled = true;
+      var original = btn.textContent;
+      btn.textContent = "Sending…";
+      say("");
+
+      fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      }).then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        form.reset();
+        say("Thanks — we'll be in touch shortly.", "ok");
+      }).catch(function () {
+        say("Something went wrong sending that. Please call or WhatsApp +1 (758) 721-1185.", "bad");
+      }).then(function () {
+        btn.disabled = false;
+        btn.textContent = original;
+      });
+    });
   })();
 
   (function () {
