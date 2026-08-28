@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hewanorra Express🛫</title>
+<title>Hewanorra Express⛴️</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Fast, reliable courier and shipping between St. Lucia and the world. Track a shipment, get a quote, or reach Hewanorra Express directly." />
-<meta name="theme-color" content="#061421" />
+<meta name="description" content="St. Lucia's best water ferry for airport transfers. Seamless UVF airport transfers, private charters, and ferry trips to Martinique. Call or WhatsApp +1 (758) 721-1185." />
+<meta name="theme-color" content="#04101f" />
 <link rel="canonical" href="https://links.hewanorraexpress.com/" />
 
 <!-- Link preview. Absolute URLs: scrapers do not resolve relative paths. -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Hewanorra Express" />
 <meta property="og:url" content="https://links.hewanorraexpress.com/" />
-<meta property="og:title" content="Hewanorra Express🛫" />
-<meta property="og:description" content="Fast, reliable courier and shipping between St. Lucia and the world." />
+<meta property="og:title" content="Hewanorra Express⛴️" />
+<meta property="og:description" content="St. Lucia's best water ferry for airport transfers, private charters, and trips to Martinique." />
+<meta property="og:image" content="https://links.hewanorraexpress.com/assets/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Hewanorra Express" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Hewanorra Express🛫" />
-<meta name="twitter:description" content="Fast, reliable courier and shipping between St. Lucia and the world." />
+<meta name="twitter:title" content="Hewanorra Express⛴️" />
+<meta name="twitter:description" content="St. Lucia's best water ferry for airport transfers, private charters, and trips to Martinique." />
+<meta name="twitter:image" content="https://links.hewanorraexpress.com/assets/og.jpg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" />
 
 <style>
-  /* Committed single-theme design: the brand is a dark navy/harbor identity
-     with a gold accent (St. Lucia's flag colours), so every colour is
-     painted explicitly rather than inherited from the host. */
+  /* Committed single-theme design: the brand is a dark, high-contrast identity
+     drawn from the logo — deep navy ground, the mark's blue as the interactive
+     accent and its red as the sparing highlight. Every colour is painted
+     explicitly rather than inherited from the host. */
   :root {
-    --ground: #061421;
-    --surface: #0b2033;
-    --surface-hi: #0f2941;
-    --line: #1c3650;
-    --flash: #2fd0d9;
-    --flash-hot: #66e6ec;
-    --chrome: #cdd9e2;
-    --gold: #e3b34c;
-    --text: #f3f7f9;
-    --muted: #8ba0b0;
+    --ground: #04101f;
+    --surface: #0a1d38;
+    --surface-hi: #0f2748;
+    --line: #1b3358;
+    --flash: #4aa3f0;
+    --flash-hot: #7cc0ff;
+    --red: #fa0415;
+    --chrome: #cddae8;
+    --text: #f2f6fa;
+    --muted: #8a9cb2;
 
     --display: "Oswald", "Arial Narrow", Impact, sans-serif;
     --body: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -93,7 +99,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: #17232c;
+    background: #16242f;
   }
 
   /* The edge itself: one hairline, not a gradient. Matches the footage
@@ -131,7 +137,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.1rem;
+    gap: 1rem;
     text-align: center;
   }
 
@@ -141,9 +147,9 @@
   .mast::before {
     content: "";
     position: absolute;
-    inset: -1.5rem -2rem -2.5rem;
+    inset: -2.5rem -2rem -2.5rem;
     z-index: -1;
-    background: radial-gradient(ellipse 88% 52% at 50% 74%, rgba(6, 20, 33, 0.82), rgba(6, 20, 33, 0.42) 54%, transparent 78%);
+    background: radial-gradient(ellipse 92% 62% at 50% 60%, rgba(4, 16, 31, 0.88), rgba(4, 16, 31, 0.55) 58%, transparent 82%);
     pointer-events: none;
   }
 
@@ -152,51 +158,51 @@
      carries its own glow, so it is kept light. */
   .logo-frame {
     width: min(15rem, 62%);
-    filter: drop-shadow(0 3px 14px rgba(6, 20, 33, 0.42)) drop-shadow(0 1px 2px rgba(6, 20, 33, 0.45));
+    filter: drop-shadow(0 3px 14px rgba(4, 16, 31, 0.45)) drop-shadow(0 1px 2px rgba(4, 16, 31, 0.5));
   }
 
   .logo-frame img { display: block; width: 100%; height: auto; }
-
-  .wordmark {
-    margin: 0;
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: clamp(1.5rem, 7vw, 2rem);
-    letter-spacing: 0.02em;
-    line-height: 1.1;
-    color: var(--text);
-    text-shadow: 0 1px 14px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.8);
-  }
-
-  .wordmark .accent { color: var(--flash); }
 
   .strap {
     margin: 0;
     font-family: var(--display);
     font-weight: 600;
     font-size: 0.72rem;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
-    color: var(--gold);
-    text-shadow: 0 1px 10px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.8);
+    /* Brighter than the interactive blue: this sits high in the masthead,
+       above the wash, where the sky is at its lightest. */
+    color: var(--flash-hot);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 1), 0 2px 14px rgba(4, 16, 31, 0.95);
   }
 
   .lede {
     margin: 0;
-    max-width: 24rem;
+    max-width: 22rem;
     font-family: var(--display);
-    font-weight: 600;
-    font-size: clamp(1.02rem, 4.4vw, 1.22rem);
-    line-height: 1.35;
+    font-weight: 700;
+    font-size: clamp(1.35rem, 6vw, 1.7rem);
+    line-height: 1.2;
     letter-spacing: 0.02em;
+    text-transform: uppercase;
     text-wrap: balance;
     color: var(--text);
-    /* Carries these two over the brighter parts of the footage without
+    /* Carries the header copy over the brighter parts of the footage without
        needing to darken the whole backdrop. */
-    text-shadow: 0 1px 12px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.82);
+    text-shadow: 0 1px 14px rgba(4, 16, 31, 0.95), 0 1px 3px rgba(4, 16, 31, 0.85);
   }
 
-  .lede b { color: var(--flash); font-weight: 600; }
+  .services-line {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(0.9rem, 3.8vw, 1.05rem);
+    letter-spacing: 0.04em;
+    color: var(--flash-hot);
+    text-shadow: 0 1px 12px rgba(4, 16, 31, 0.95), 0 1px 3px rgba(4, 16, 31, 0.85);
+  }
+
+  .services-line .sep { color: var(--red); padding: 0 0.15rem; }
 
   .intro {
     margin: 0;
@@ -204,7 +210,7 @@
     font-size: 0.9rem;
     line-height: 1.65;
     color: var(--chrome);
-    text-shadow: 0 1px 10px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.78);
+    text-shadow: 0 1px 10px rgba(4, 16, 31, 0.95), 0 1px 3px rgba(4, 16, 31, 0.8);
   }
 
   /* ---------- Groups ---------- */
@@ -215,10 +221,23 @@
   }
 
   .group-head {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.85rem;
     margin-bottom: 0.15rem;
+  }
+
+  /* Section labels sit directly on footage that can be very bright (sky,
+     surf, shoreline). Same approach as the masthead: a local wash under
+     this one line rather than dimming the whole backdrop. */
+  .group-head::before {
+    content: "";
+    position: absolute;
+    inset: -0.85rem -1.5rem;
+    z-index: -1;
+    background: radial-gradient(ellipse 70% 100% at 22% 50%, rgba(4, 16, 31, 0.92), transparent 72%);
+    pointer-events: none;
   }
 
   .group-head h2 {
@@ -232,13 +251,23 @@
     white-space: nowrap;
     /* Sits directly on footage, so it carries its own shadow rather than
        having the whole backdrop darkened on its behalf. */
-    text-shadow: 0 1px 10px rgba(6, 20, 33, 0.95), 0 1px 3px rgba(6, 20, 33, 0.85);
+    text-shadow: 0 1px 10px rgba(4, 16, 31, 0.98), 0 1px 4px rgba(4, 16, 31, 0.92);
   }
 
+  /* Red hairline, lifted from the mark's accent */
   .group-head .rule {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, rgba(227, 179, 76, 0.55), rgba(227, 179, 76, 0));
+    background: linear-gradient(90deg, rgba(250, 4, 21, 0.6), rgba(250, 4, 21, 0));
+  }
+
+  .group-head .count {
+    font-family: var(--display);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 8px rgba(4, 16, 31, 0.95);
   }
 
   /* ---------- Link cards ---------- */
@@ -260,7 +289,7 @@
   .card:hover,
   .card:focus-visible {
     background: var(--surface-hi);
-    border-color: rgba(47, 208, 217, 0.5);
+    border-color: rgba(74, 163, 240, 0.55);
     transform: translateY(-2px);
   }
 
@@ -274,7 +303,7 @@
     height: 2.4rem;
     flex-shrink: 0;
     border-radius: 0.6rem;
-    background: #051119;
+    background: #061525;
     border: 1px solid var(--line);
     color: var(--flash);
   }
@@ -305,6 +334,7 @@
     overflow-wrap: anywhere;
   }
 
+  /* The kind-chip: says what you're opening before you tap it. */
   .chip {
     flex-shrink: 0;
     font-family: var(--display);
@@ -314,38 +344,38 @@
     text-transform: uppercase;
     padding: 0.16rem 0.42rem;
     border-radius: 0.25rem;
-    border: 1px solid rgba(47, 208, 217, 0.32);
+    border: 1px solid rgba(74, 163, 240, 0.34);
     color: var(--flash);
-    background: rgba(47, 208, 217, 0.07);
+    background: rgba(74, 163, 240, 0.08);
   }
 
   .chip.social {
-    border-color: rgba(227, 179, 76, 0.36);
-    color: var(--gold);
-    background: rgba(227, 179, 76, 0.07);
+    border-color: rgba(250, 4, 21, 0.38);
+    color: #ff6b73;
+    background: rgba(250, 4, 21, 0.08);
   }
 
-  /* Primary action: the card meant to be tapped before the rest */
-  .card--primary {
-    border-color: rgba(47, 208, 217, 0.5);
+  /* Primary action: the cards meant to be tapped before the rest */
+  .card--book {
+    border-color: rgba(74, 163, 240, 0.5);
     background:
-      linear-gradient(135deg, rgba(47, 208, 217, 0.12), rgba(47, 208, 217, 0.03) 55%),
+      linear-gradient(135deg, rgba(74, 163, 240, 0.14), rgba(74, 163, 240, 0.03) 55%),
       var(--surface);
-    box-shadow: 0 0 30px rgba(47, 208, 217, 0.09);
+    box-shadow: 0 0 30px rgba(74, 163, 240, 0.1);
   }
 
-  .card--primary:hover,
-  .card--primary:focus-visible {
+  .card--book:hover,
+  .card--book:focus-visible {
     border-color: var(--flash);
-    box-shadow: 0 0 34px rgba(47, 208, 217, 0.18);
+    box-shadow: 0 0 34px rgba(74, 163, 240, 0.2);
   }
 
-  .card--primary .icon {
-    border-color: rgba(47, 208, 217, 0.45);
-    background: rgba(47, 208, 217, 0.1);
+  .card--book .icon {
+    border-color: rgba(74, 163, 240, 0.45);
+    background: rgba(74, 163, 240, 0.12);
   }
 
-  .card--primary .name { color: var(--flash); }
+  .card--book .name { color: var(--flash-hot); }
 
   .arrow {
     flex-shrink: 0;
@@ -379,7 +409,7 @@
     position: absolute;
     inset: -1rem -2rem -2rem;
     z-index: -1;
-    background: radial-gradient(ellipse 90% 70% at 50% 55%, rgba(6, 20, 33, 0.9), transparent 74%);
+    background: radial-gradient(ellipse 90% 70% at 50% 55%, rgba(4, 16, 31, 0.92), transparent 74%);
     pointer-events: none;
   }
 
@@ -430,12 +460,12 @@
   }
 
   .share.on { display: inline-flex; }
-  .share:hover { border-color: rgba(47, 208, 217, 0.5); color: var(--flash); }
+  .share:hover { border-color: rgba(74, 163, 240, 0.5); color: var(--flash); }
   .share:focus-visible { outline: 2px solid var(--flash); outline-offset: 3px; }
   .share svg { width: 0.95rem; height: 0.95rem; }
 
   @media (prefers-reduced-motion: reduce) {
-    .card { transition: none; }
+    .card, .arrow, .foot a, .share { transition: none; }
     .card:hover, .card:focus-visible { transform: none; }
   }
 </style>
@@ -452,42 +482,42 @@
     <div class="logo-frame">
       <img src="assets/logo.png" alt="Hewanorra Express" width="800" height="533" />
     </div>
-    <p class="strap">St. Lucia &middot; Caribbean</p>
-    <h1 class="wordmark">Hewanorra <span class="accent">Express</span></h1>
-    <p class="lede">
-      Courier &amp; freight, <b>done right,</b><br />between St. Lucia and the world.
+    <p class="strap">Saint Lucia &middot; Since 2021</p>
+    <h1 class="lede">St. Lucia's Best Water Ferry for Airport Transfers</h1>
+    <p class="services-line">
+      Airport Transfers <span class="sep">|</span> Private Charters <span class="sep">|</span> Ferry Trips
     </p>
     <p class="intro">
-      Parcel pickup, air &amp; sea freight, and door-to-door delivery for
-      businesses and residents across the island — with real-time tracking
-      and rates that make sense.
+      Hewanorra Express offers seamless water ferry services for stress-free
+      airport transfers, private charters, and exciting trips to Martinique.
     </p>
   </header>
 
   <!-- ============================================================
        TO EDIT: each link is one <a class="card"> block below.
        Copy a block, change the href, the name, and the sub text.
-       Replace the "#" placeholders with real tracking / booking /
-       social URLs once they exist.
+
+       The three booking cards below open Calendly in an overlay once
+       their real URLs are in place — replace each href="#" with the
+       matching Calendly link and nothing else needs to change.
        ============================================================ -->
 
   <section class="group">
     <div class="group-head">
-      <h2>Ship With Us</h2>
+      <h2>Book A Trip</h2>
       <span class="rule"></span>
+      <span class="count">03</span>
     </div>
 
-    <a class="card card--primary" href="#" target="_blank" rel="noopener noreferrer">
+    <a class="card card--book" id="book-airport" href="#" target="_blank" rel="noopener noreferrer">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <path d="M14 2v6h6" />
-          <path d="M9 13h6" /><path d="M9 17h6" />
+          <path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a1 1 0 0 0-.9.3l-.9.9a1 1 0 0 0 .2 1.6l6.1 3.4-2.6 2.6H4.5a1 1 0 0 0-.7.3l-.6.6a1 1 0 0 0 .3 1.6l3.1 1.3 1.3 3.1a1 1 0 0 0 1.6.3l.6-.6a1 1 0 0 0 .3-.7v-2.2l2.6-2.6 3.4 6.1a1 1 0 0 0 1.6.2l.9-.9a1 1 0 0 0 .3-.9z" />
         </svg>
       </span>
       <span class="meta">
-        <span class="name">Get a Shipping Quote</span>
-        <span class="sub"><span class="chip">Free</span> No commitment</span>
+        <span class="name">Airport Transfers</span>
+        <span class="sub">Stress-free UVF transfers by sea</span>
       </span>
       <span class="arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -496,17 +526,17 @@
       </span>
     </a>
 
-    <a class="card" href="#" target="_blank" rel="noopener noreferrer">
+    <a class="card card--book" id="book-martinique" href="#" target="_blank" rel="noopener noreferrer">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73Z" />
-          <path d="M3.3 7 12 12l8.7-5" />
-          <path d="M12 22V12" />
+          <path d="M2 20a3 3 0 0 0 2.5-1 3 3 0 0 1 5 0 3 3 0 0 0 5 0 3 3 0 0 1 5 0 3 3 0 0 0 2.5 1" />
+          <path d="M4 16.5 5.5 10h13L20 16.5" />
+          <path d="M12 10V4l6 3-6 3" />
         </svg>
       </span>
       <span class="meta">
-        <span class="name">Track Your Shipment</span>
-        <span class="sub">Real-time status</span>
+        <span class="name">Ferry Trips to Martinique</span>
+        <span class="sub">Shopping, culture &amp; a French island day out</span>
       </span>
       <span class="arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -515,18 +545,18 @@
       </span>
     </a>
 
-    <a class="card" href="#" target="_blank" rel="noopener noreferrer">
+    <a class="card card--book" id="book-charter" href="#" target="_blank" rel="noopener noreferrer">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 17h4V5H2v12h3" />
-          <path d="M20 17h2v-3.34a2 2 0 0 0-.59-1.41L18 9h-4v8h2" />
-          <circle cx="7.5" cy="17.5" r="2.5" />
-          <circle cx="17.5" cy="17.5" r="2.5" />
+          <path d="M2 20a3 3 0 0 0 2.5-1 3 3 0 0 1 5 0 3 3 0 0 0 5 0 3 3 0 0 1 5 0 3 3 0 0 0 2.5 1" />
+          <path d="M5 16 3.5 11h17L19 16" />
+          <path d="M8 11V7h8v4" />
+          <path d="M12 7V3" />
         </svg>
       </span>
       <span class="meta">
-        <span class="name">Book a Pickup</span>
-        <span class="sub">Same-day available</span>
+        <span class="name">Private Charters</span>
+        <span class="sub">A day on the water with a professional crew</span>
       </span>
       <span class="arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -538,19 +568,19 @@
 
   <section class="group">
     <div class="group-head">
-      <h2>Get In Touch</h2>
+      <h2>Reservations</h2>
       <span class="rule"></span>
     </div>
 
-    <a class="card" href="https://wa.me/17580000000" target="_blank" rel="noopener noreferrer">
+    <a class="card" href="https://wa.me/17587211185" target="_blank" rel="noopener noreferrer">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 20l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
         </svg>
       </span>
       <span class="meta">
-        <span class="name">Chat on WhatsApp</span>
-        <span class="sub">Fastest response</span>
+        <span class="name">WhatsApp Us</span>
+        <span class="sub"><span class="chip">Fastest</span> +1 (758) 721-1185</span>
       </span>
       <span class="arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -559,15 +589,15 @@
       </span>
     </a>
 
-    <a class="card" href="tel:+17580000000">
+    <a class="card" href="tel:+17587211185">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
       </span>
       <span class="meta">
-        <span class="name">Call Us</span>
-        <span class="sub">Mon&ndash;Sat, 8am&ndash;5pm</span>
+        <span class="name">Call for Reservations</span>
+        <span class="sub">+1 (758) 721-1185</span>
       </span>
       <span class="arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -576,16 +606,17 @@
       </span>
     </a>
 
-    <a class="card" href="mailto:info@hewanorraexpress.com">
+    <a class="card" href="https://hewanorraexpress.com" target="_blank" rel="noopener noreferrer">
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2" />
-          <path d="m2 7 10 6 10-6" />
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18" />
+          <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z" />
         </svg>
       </span>
       <span class="meta">
-        <span class="name">Email Us</span>
-        <span class="sub">info@hewanorraexpress.com</span>
+        <span class="name">Visit Our Website</span>
+        <span class="sub">hewanorraexpress.com</span>
       </span>
       <span class="arrow" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -649,10 +680,10 @@
 
     <nav class="foot-links">
       <a href="https://hewanorraexpress.com" target="_blank" rel="noopener noreferrer">hewanorraexpress.com</a>
-      <a href="mailto:info@hewanorraexpress.com">info@hewanorraexpress.com</a>
+      <a href="tel:+17587211185">+1 (758) 721-1185</a>
     </nav>
 
-    <p class="copyright">&copy; <span id="year"></span> Hewanorra Express. All rights reserved.</p>
+    <p class="copyright">&copy; <span id="year"></span> Hewanorra Express &middot; Saint Lucia</p>
   </footer>
 </main>
 
@@ -702,6 +733,38 @@
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) v.pause(); else play();
     });
+  })();
+
+  /* Calendly opens in an overlay, but only once its script has actually
+     loaded. Until then — and forever, if the script is blocked or fails —
+     each card stays an ordinary link that opens the booking page in a tab.
+     Cards still on the "#" placeholder are skipped entirely, so nothing is
+     fetched from Calendly until real URLs are in place. */
+  (function () {
+    var links = Array.prototype.filter.call(
+      document.querySelectorAll(".card--book[href]"),
+      function (a) { return (a.getAttribute("href") || "#") !== "#"; }
+    );
+    if (!links.length) return;
+
+    var css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "https://assets.calendly.com/assets/external/widget.css";
+    document.head.appendChild(css);
+
+    var s = document.createElement("script");
+    s.src = "https://assets.calendly.com/assets/external/widget.js";
+    s.async = true;
+    s.onload = function () {
+      links.forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          if (!window.Calendly || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+          e.preventDefault();
+          window.Calendly.initPopupWidget({ url: link.href });
+        });
+      });
+    };
+    document.head.appendChild(s);
   })();
 
   (function () {
