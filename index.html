@@ -57,19 +57,61 @@
     overflow-x: hidden;
   }
 
-  /* Ambient backdrop: a still gradient, no footage. Kept as its own layer so
-     a real photo/video can be dropped in later without restructuring. */
+  /* Ambient backdrop: the charter footage, shown exactly as graded. */
   .backdrop {
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
-    background:
-      radial-gradient(60% 50% at 50% 0%, rgba(47, 208, 217, 0.14), transparent 70%),
-      radial-gradient(50% 40% at 85% 100%, rgba(227, 179, 76, 0.1), transparent 70%),
-      linear-gradient(180deg, #081a29, #05111c 60%, #040d16);
   }
+
+  /* The footage is vertical (9:16). On a phone that fills the screen exactly,
+     no cropping. On wider screens it stays pinned to the content column's
+     width instead of being stretched across the viewport, with its edges
+     masked so it blends into the ground rather than showing a hard band. */
+  .backdrop-video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 34rem;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1400ms ease;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  /* Behind the footage. The page ground is near-black, so the masked edges
+     would dissolve into black and read as a shadow pressing in on the frame.
+     A flat grey behind it means the same fade lands on grey instead, and the
+     column reads as a panel rather than something casting a shadow. */
+  .backdrop::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #17232c;
+  }
+
+  /* The edge itself: one hairline, not a gradient. Matches the footage
+     column's width exactly so the line sits on its boundary. */
+  .backdrop::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 34rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .backdrop-video.ready { opacity: 1; }
 
   .wrap {
     position: relative;
@@ -85,6 +127,7 @@
 
   /* ---------- Masthead ---------- */
   .mast {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,21 +135,27 @@
     text-align: center;
   }
 
-  /* Emblem: a circular badge with a departing-flight mark, standing in for a
-     logo asset. Swap for an <img> pointing at a real logo whenever one
-     exists — the surrounding layout does not need to change. */
-  .emblem {
-    width: 4.5rem;
-    height: 4.5rem;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: radial-gradient(circle at 35% 30%, var(--surface-hi), var(--surface) 70%);
-    border: 1px solid rgba(227, 179, 76, 0.4);
-    box-shadow: 0 0 0 1px rgba(47, 208, 217, 0.12), 0 10px 30px rgba(0, 0, 0, 0.45);
+  /* A soft wash behind the header copy only. Lets the footage stay at full
+     brightness everywhere else instead of dimming the whole backdrop to
+     rescue this one block of text. */
+  .mast::before {
+    content: "";
+    position: absolute;
+    inset: -1.5rem -2rem -2.5rem;
+    z-index: -1;
+    background: radial-gradient(ellipse 88% 52% at 50% 74%, rgba(6, 20, 33, 0.82), rgba(6, 20, 33, 0.42) 54%, transparent 78%);
+    pointer-events: none;
   }
 
-  .emblem svg { width: 2.1rem; height: 2.1rem; color: var(--gold); }
+  /* The mark is a transparent PNG and sits directly on the footage — no panel,
+     no plate. A drop shadow gives it edge separation instead; the artwork
+     carries its own glow, so it is kept light. */
+  .logo-frame {
+    width: min(15rem, 62%);
+    filter: drop-shadow(0 3px 14px rgba(6, 20, 33, 0.42)) drop-shadow(0 1px 2px rgba(6, 20, 33, 0.45));
+  }
+
+  .logo-frame img { display: block; width: 100%; height: auto; }
 
   .wordmark {
     margin: 0;
@@ -116,6 +165,7 @@
     letter-spacing: 0.02em;
     line-height: 1.1;
     color: var(--text);
+    text-shadow: 0 1px 14px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.8);
   }
 
   .wordmark .accent { color: var(--flash); }
@@ -128,6 +178,7 @@
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--gold);
+    text-shadow: 0 1px 10px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.8);
   }
 
   .lede {
@@ -140,6 +191,9 @@
     letter-spacing: 0.02em;
     text-wrap: balance;
     color: var(--text);
+    /* Carries these two over the brighter parts of the footage without
+       needing to darken the whole backdrop. */
+    text-shadow: 0 1px 12px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.82);
   }
 
   .lede b { color: var(--flash); font-weight: 600; }
@@ -150,6 +204,7 @@
     font-size: 0.9rem;
     line-height: 1.65;
     color: var(--chrome);
+    text-shadow: 0 1px 10px rgba(6, 20, 33, 0.92), 0 1px 3px rgba(6, 20, 33, 0.78);
   }
 
   /* ---------- Groups ---------- */
@@ -175,6 +230,9 @@
     color: var(--text);
     margin: 0;
     white-space: nowrap;
+    /* Sits directly on footage, so it carries its own shadow rather than
+       having the whole backdrop darkened on its behalf. */
+    text-shadow: 0 1px 10px rgba(6, 20, 33, 0.95), 0 1px 3px rgba(6, 20, 33, 0.85);
   }
 
   .group-head .rule {
@@ -305,6 +363,7 @@
 
   /* ---------- Footer ---------- */
   .foot {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -312,6 +371,16 @@
     padding-top: 1.75rem;
     border-top: 1px solid var(--line);
     text-align: center;
+  }
+
+  /* Same trick as the masthead: local backing instead of a global dim. */
+  .foot::before {
+    content: "";
+    position: absolute;
+    inset: -1rem -2rem -2rem;
+    z-index: -1;
+    background: radial-gradient(ellipse 90% 70% at 50% 55%, rgba(6, 20, 33, 0.9), transparent 74%);
+    pointer-events: none;
   }
 
   .foot-links {
@@ -373,15 +442,15 @@
 </head>
 <body>
 
-<div class="backdrop" aria-hidden="true"></div>
+<div class="backdrop" aria-hidden="true">
+  <video id="bgvid" class="backdrop-video" muted loop playsinline preload="none"
+         poster="assets/bg-poster.jpg"></video>
+</div>
 
 <main class="wrap">
   <header class="mast">
-    <div class="emblem" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2 12h13M11 6l5 6-5 6" />
-        <path d="M15 6h4l3 6-3 6h-4" />
-      </svg>
+    <div class="logo-frame">
+      <img src="assets/logo.png" alt="Hewanorra Express" width="800" height="533" />
     </div>
     <p class="strap">St. Lucia &middot; Caribbean</p>
     <h1 class="wordmark">Hewanorra <span class="accent">Express</span></h1>
@@ -590,6 +659,49 @@
 <script>
   (function () {
     document.getElementById("year").textContent = new Date().getFullYear();
+  })();
+
+  /* Background footage is opt-in at runtime: the <video> ships with no src, so
+     nothing downloads unless conditions are right. Bail out for reduced-motion,
+     data-saver and 2G — in each of those cases the poster is the backdrop. */
+  (function () {
+    var v = document.getElementById("bgvid");
+    if (!v) return;
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var conn = navigator.connection || {};
+    var frugal = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || "");
+    // Reduced motion keeps the poster as a still backdrop rather than nothing.
+    if (reduce || frugal) { v.classList.add("ready"); return; }
+
+    // iOS only permits unprompted playback when muted is set as a property,
+    // not merely as an attribute, and playsinline keeps it from going
+    // fullscreen. Belt and braces alongside the markup.
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
+
+    v.src = "assets/bg.mp4";
+    // Fade in on the poster rather than waiting for playback, so the backdrop
+    // still appears if a browser refuses to autoplay.
+    requestAnimationFrame(function () { v.classList.add("ready"); });
+    var play = function () { var p = v.play(); if (p) p.catch(function () {}); };
+    play();
+    // Low Power Mode and "Never Auto-Play" refuse the initial call; retry once
+    // the file is actually decodable, and once on first interaction.
+    v.addEventListener("loadeddata", play, { once: true });
+    ["touchstart", "pointerdown"].forEach(function (evt) {
+      document.addEventListener(evt, function once() {
+        if (v.paused) play();
+        document.removeEventListener(evt, once);
+      }, { once: true, passive: true });
+    });
+
+    // Don't burn battery decoding video the viewer can't see.
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) v.pause(); else play();
+    });
   })();
 
   (function () {
