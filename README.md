@@ -24,7 +24,7 @@ the subdomain here with a single DNS record, and deploys stay on our side:
 
 | Type | Name    | Value              |
 | ---- | ------- | ------------------ |
-| A    | `link`  | the droplet's IPv4 |
+| A    | `link`  | `159.223.127.113`  |
 
 ## First-time setup
 
@@ -49,7 +49,7 @@ certbot --nginx -d link.hewanorraexpress.com
 From your machine:
 
 ```bash
-./deploy/deploy.sh root@YOUR_DROPLET_IP
+./deploy/deploy.sh root@159.223.127.113
 ```
 
 Nothing to build — it rsyncs `index.html` and `assets/` up. `--delete` is

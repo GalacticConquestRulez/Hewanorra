@@ -47,7 +47,7 @@ Next:
 1. Confirm the client's DNS A record for ${DOMAIN} points at this droplet:
      dig +short ${DOMAIN}
 2. Push the site up from your machine:
-     ./deploy/deploy.sh root@THIS_DROPLET_IP
+     ./deploy/deploy.sh root@159.223.127.113
 3. Once DNS resolves here, enable HTTPS:
      certbot --nginx -d ${DOMAIN}
 EOF
