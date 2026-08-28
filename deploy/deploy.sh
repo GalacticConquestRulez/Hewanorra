@@ -9,7 +9,7 @@
 set -euo pipefail
 
 TARGET="${1:?Usage: deploy.sh user@your-droplet-ip}"
-REMOTE_ROOT="/var/www/hewanorra-links"
+REMOTE_ROOT="/var/www/hewanorra-link"
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 cd "${REPO_ROOT}"
@@ -26,4 +26,4 @@ ssh "${TARGET}" "chown -R www-data:www-data ${REMOTE_ROOT}"
 
 echo
 echo "Deployed to ${TARGET}:${REMOTE_ROOT}"
-echo "Check it: https://links.hewanorraexpress.com/"
+echo "Check it: https://link.hewanorraexpress.com/"

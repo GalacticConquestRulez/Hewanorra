@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-time setup to add links.hewanorraexpress.com as a new nginx site on the
+# One-time setup to add link.hewanorraexpress.com as a new nginx site on the
 # droplet. Safe to run alongside the sites already there (greenflashusa.com,
 # links.greenflashusa.com) — it does not touch ufw or any other site's config.
 #
@@ -10,8 +10,8 @@
 # block, this leaves that file alone rather than overwriting HTTPS away.
 set -euo pipefail
 
-DOMAIN="links.hewanorraexpress.com"
-WEB_ROOT="/var/www/hewanorra-links"
+DOMAIN="link.hewanorraexpress.com"
+WEB_ROOT="/var/www/hewanorra-link"
 AVAIL="/etc/nginx/sites-available/${DOMAIN}"
 ENABLED="/etc/nginx/sites-enabled/${DOMAIN}"
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

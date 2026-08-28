@@ -1,7 +1,7 @@
 # Hewanorra Express — links page
 
 The link-in-bio page for [Hewanorra Express](https://hewanorraexpress.com),
-St. Lucia's water ferry service. Served at **links.hewanorraexpress.com**.
+St. Lucia's water ferry service. Served at **link.hewanorraexpress.com**.
 
 One static `index.html` plus four assets. No build step, no dependencies,
 no server-side code.
@@ -17,14 +17,14 @@ assets/og.jpg         link-preview image
 ## Hosting
 
 Runs on the Green Flash droplet, alongside `greenflashusa.com` and
-`links.greenflashusa.com`, from `/var/www/hewanorra-links`.
+`links.greenflashusa.com`, from `/var/www/hewanorra-link`.
 
 The domain belongs to the client; the server does not. Their web guy points
 the subdomain here with a single DNS record, and deploys stay on our side:
 
 | Type | Name    | Value              |
 | ---- | ------- | ------------------ |
-| A    | `links` | the droplet's IPv4 |
+| A    | `link`  | the droplet's IPv4 |
 
 ## First-time setup
 
@@ -41,7 +41,7 @@ rewrites that file in place, so overwriting it would delete HTTPS.
 Then, once DNS resolves to the droplet:
 
 ```bash
-certbot --nginx -d links.hewanorraexpress.com
+certbot --nginx -d link.hewanorraexpress.com
 ```
 
 ## Deploying a change
@@ -65,7 +65,7 @@ the `.name` and the `.sub` text. The four booking cards
 Two things worth knowing before changing them:
 
 - **The subdomain is baked in.** The canonical URL and the OpenGraph and
-  Twitter tags are written as `https://links.hewanorraexpress.com/`. Moving
+  Twitter tags are written as `https://link.hewanorraexpress.com/`. Moving
   the page to a different hostname means updating those, or link previews
   break.
 - **Don't gzip the MP4.** The nginx conf deliberately leaves `video/mp4` out
@@ -75,8 +75,8 @@ Two things worth knowing before changing them:
 ## Verifying a deploy
 
 ```bash
-dig +short links.hewanorraexpress.com     # points at the droplet
-curl -sI https://links.hewanorraexpress.com/assets/bg.mp4
+dig +short link.hewanorraexpress.com     # points at the droplet
+curl -sI https://link.hewanorraexpress.com/assets/bg.mp4
 #   want:  Content-Type: video/mp4
 #          Accept-Ranges: bytes
 #   not:   Content-Encoding: gzip
