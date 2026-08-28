@@ -63,7 +63,9 @@
     overflow-x: hidden;
   }
 
-  /* Ambient backdrop: the charter footage, shown exactly as graded. */
+  /* Ambient backdrop: the charter footage, shown exactly as graded and
+     filling the whole viewport — no edge mask, no panel, no hairline, so
+     nothing reads as a shadow pressing in on the frame. */
   .backdrop {
     position: fixed;
     inset: 0;
@@ -72,49 +74,14 @@
     overflow: hidden;
   }
 
-  /* The footage is vertical (9:16). On a phone that fills the screen exactly,
-     no cropping. On wider screens it stays pinned to the content column's
-     width instead of being stretched across the viewport, with its edges
-     masked so it blends into the ground rather than showing a hard band. */
   .backdrop-video {
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    inset: 0;
     width: 100%;
-    max-width: 34rem;
     height: 100%;
     object-fit: cover;
     opacity: 0;
     transition: opacity 1400ms ease;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  }
-
-  /* Behind the footage. The page ground is near-black, so the masked edges
-     would dissolve into black and read as a shadow pressing in on the frame.
-     A flat grey behind it means the same fade lands on grey instead, and the
-     column reads as a panel rather than something casting a shadow. */
-  .backdrop::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: #16242f;
-  }
-
-  /* The edge itself: one hairline, not a gradient. Matches the footage
-     column's width exactly so the line sits on its boundary. */
-  .backdrop::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 34rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.16);
-    border-right: 1px solid rgba(255, 255, 255, 0.16);
   }
 
   .backdrop-video.ready { opacity: 1; }
@@ -141,24 +108,10 @@
     text-align: center;
   }
 
-  /* A soft wash behind the header copy only. Lets the footage stay at full
-     brightness everywhere else instead of dimming the whole backdrop to
-     rescue this one block of text. */
-  .mast::before {
-    content: "";
-    position: absolute;
-    inset: -2.5rem -2rem -2.5rem;
-    z-index: -1;
-    background: radial-gradient(ellipse 92% 62% at 50% 60%, rgba(4, 16, 31, 0.88), rgba(4, 16, 31, 0.55) 58%, transparent 82%);
-    pointer-events: none;
-  }
-
-  /* The mark is a transparent PNG and sits directly on the footage — no panel,
-     no plate. A drop shadow gives it edge separation instead; the artwork
-     carries its own glow, so it is kept light. */
+  /* The mark sits directly on the footage — no panel, no plate, no shadow.
+     The artwork carries its own glow and holds up on its own. */
   .logo-frame {
     width: min(15rem, 62%);
-    filter: drop-shadow(0 3px 14px rgba(4, 16, 31, 0.45)) drop-shadow(0 1px 2px rgba(4, 16, 31, 0.5));
   }
 
   .logo-frame img { display: block; width: 100%; height: auto; }
@@ -170,10 +123,8 @@
     font-size: 0.72rem;
     letter-spacing: 0.26em;
     text-transform: uppercase;
-    /* Brighter than the interactive blue: this sits high in the masthead,
-       above the wash, where the sky is at its lightest. */
-    color: var(--flash-hot);
-    text-shadow: 0 1px 3px rgba(4, 16, 31, 1), 0 2px 14px rgba(4, 16, 31, 0.95);
+    color: var(--text);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
   }
 
   .lede {
@@ -187,9 +138,9 @@
     text-transform: uppercase;
     text-wrap: balance;
     color: var(--text);
-    /* Carries the header copy over the brighter parts of the footage without
-       needing to darken the whole backdrop. */
-    text-shadow: 0 1px 14px rgba(4, 16, 31, 0.95), 0 1px 3px rgba(4, 16, 31, 0.85);
+    /* One tight contour so type keeps its edge where the footage runs
+       bright — not a dark halo. */
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
   }
 
   .services-line {
@@ -199,7 +150,7 @@
     font-size: clamp(0.9rem, 3.8vw, 1.05rem);
     letter-spacing: 0.04em;
     color: var(--flash-hot);
-    text-shadow: 0 1px 12px rgba(4, 16, 31, 0.95), 0 1px 3px rgba(4, 16, 31, 0.85);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
   }
 
   .services-line .sep { color: var(--red); padding: 0 0.15rem; }
@@ -209,8 +160,8 @@
     max-width: 26rem;
     font-size: 0.9rem;
     line-height: 1.65;
-    color: var(--chrome);
-    text-shadow: 0 1px 10px rgba(4, 16, 31, 0.95), 0 1px 3px rgba(4, 16, 31, 0.8);
+    color: var(--text);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
   }
 
   /* Three proof points, kept to one compact row so the page stays a links
@@ -230,9 +181,11 @@
     align-items: center;
     gap: 0.35rem;
     padding: 0.3rem 0.6rem;
-    border: 1px solid rgba(74, 163, 240, 0.28);
+    border: 1px solid rgba(124, 192, 255, 0.34);
     border-radius: 999px;
-    background: rgba(4, 16, 31, 0.72);
+    background: rgba(12, 36, 66, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    backdrop-filter: blur(14px) saturate(1.2);
     font-size: 0.71rem;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -261,18 +214,6 @@
     margin-bottom: 0.15rem;
   }
 
-  /* Section labels sit directly on footage that can be very bright (sky,
-     surf, shoreline). Same approach as the masthead: a local wash under
-     this one line rather than dimming the whole backdrop. */
-  .group-head::before {
-    content: "";
-    position: absolute;
-    inset: -0.85rem -1.5rem;
-    z-index: -1;
-    background: radial-gradient(ellipse 70% 100% at 22% 50%, rgba(4, 16, 31, 0.92), transparent 72%);
-    pointer-events: none;
-  }
-
   .group-head h2 {
     font-family: var(--display);
     font-weight: 600;
@@ -282,9 +223,7 @@
     color: var(--text);
     margin: 0;
     white-space: nowrap;
-    /* Sits directly on footage, so it carries its own shadow rather than
-       having the whole backdrop darkened on its behalf. */
-    text-shadow: 0 1px 10px rgba(4, 16, 31, 0.98), 0 1px 4px rgba(4, 16, 31, 0.92);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
   }
 
   /* Red hairline, lifted from the mark's accent */
@@ -300,7 +239,7 @@
     letter-spacing: 0.14em;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 1px 8px rgba(4, 16, 31, 0.95);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
   }
 
   /* ---------- Link cards ---------- */
@@ -311,9 +250,11 @@
     align-items: center;
     gap: 0.95rem;
     padding: 0.95rem 1.05rem;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(124, 192, 255, 0.28);
     border-radius: 0.85rem;
-    background: var(--surface);
+    background: rgba(12, 36, 66, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    backdrop-filter: blur(14px) saturate(1.2);
     text-decoration: none;
     color: inherit;
     transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
@@ -321,8 +262,8 @@
 
   .card:hover,
   .card:focus-visible {
-    background: var(--surface-hi);
-    border-color: rgba(74, 163, 240, 0.55);
+    background: rgba(20, 52, 90, 0.68);
+    border-color: rgba(124, 192, 255, 0.65);
     transform: translateY(-2px);
   }
 
@@ -336,9 +277,9 @@
     height: 2.4rem;
     flex-shrink: 0;
     border-radius: 0.6rem;
-    background: #061525;
-    border: 1px solid var(--line);
-    color: var(--flash);
+    background: rgba(6, 21, 37, 0.5);
+    border: 1px solid rgba(124, 192, 255, 0.3);
+    color: var(--flash-hot);
   }
 
   .icon svg { width: 1.15rem; height: 1.15rem; display: block; }
@@ -415,15 +356,13 @@
   .card--book {
     border-color: rgba(74, 163, 240, 0.5);
     background:
-      linear-gradient(135deg, rgba(74, 163, 240, 0.14), rgba(74, 163, 240, 0.03) 55%),
-      var(--surface);
-    box-shadow: 0 0 30px rgba(74, 163, 240, 0.1);
+      linear-gradient(135deg, rgba(124, 192, 255, 0.2), rgba(74, 163, 240, 0.06) 55%),
+      rgba(12, 36, 66, 0.55);
   }
 
   .card--book:hover,
   .card--book:focus-visible {
-    border-color: var(--flash);
-    box-shadow: 0 0 34px rgba(74, 163, 240, 0.2);
+    border-color: var(--flash-hot);
   }
 
   .card--book .icon {
@@ -457,16 +396,6 @@
     padding-top: 1.75rem;
     border-top: 1px solid var(--line);
     text-align: center;
-  }
-
-  /* Same trick as the masthead: local backing instead of a global dim. */
-  .foot::before {
-    content: "";
-    position: absolute;
-    inset: -1rem -2rem -2rem;
-    z-index: -1;
-    background: radial-gradient(ellipse 90% 70% at 50% 55%, rgba(4, 16, 31, 0.92), transparent 74%);
-    pointer-events: none;
   }
 
   .foot-links {
@@ -512,8 +441,10 @@
     gap: 0.5rem;
     padding: 0.6rem 1.1rem;
     border-radius: 0.6rem;
-    border: 1px solid var(--line);
-    background: var(--surface);
+    border: 1px solid rgba(124, 192, 255, 0.3);
+    background: rgba(12, 36, 66, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    backdrop-filter: blur(14px) saturate(1.2);
     color: var(--chrome);
     font-family: var(--body);
     font-size: 0.84rem;
