@@ -679,21 +679,56 @@
 
   /* Agency credit: quieter than the client's own copyright, so it reads as a
      signature rather than competing with the page's contact details. */
+  /* Agency credit: a small stacked lockup — label, mark, address — centred
+     at every width. The mark is artwork on black, so it is composited with
+     `screen`: black leaves the backdrop untouched and only the glow paints,
+     which keeps it from sitting on the footage as a hard rectangle. */
   .credit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
     margin: 0;
-    font-size: 0.7rem;
-    letter-spacing: 0.04em;
-    color: var(--chrome);
+  }
+
+  .credit-label {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 0.64rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
     text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
   }
 
-  .credit a {
-    font-size: inherit;
-    color: var(--chrome);
+  /* Both need the extra .foot specificity: `.foot a` sets its own size,
+     colour and underline. */
+  .foot .credit-mark {
+    display: block;
+    line-height: 0;
+    border-bottom: 0;
   }
 
-  .credit a:hover,
-  .credit a:focus-visible { color: var(--flash); border-bottom-color: var(--flash); }
+  .foot .credit-mark img {
+    display: block;
+    width: 9.4rem;
+    max-width: 46vw;
+    height: auto;
+    mix-blend-mode: screen;
+  }
+
+  .foot .credit-mark:focus-visible { outline: 2px solid var(--flash); outline-offset: 4px; border-radius: 4px; }
+
+  .foot .credit-url {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
+  }
+
+  .foot .credit-url:hover,
+  .foot .credit-url:focus-visible { color: var(--flash); border-bottom-color: var(--flash); }
 
   .copyright {
     margin: 0;
@@ -1016,10 +1051,13 @@
 
     <p class="copyright">&copy; <span id="year"></span> Hewanorra Express. All rights reserved.</p>
 
-    <p class="credit">
-      Created by
-      <a href="https://links.greenflashusa.com" target="_blank" rel="noopener noreferrer">links.greenflashusa.com</a>
-    </p>
+    <div class="credit">
+      <span class="credit-label">Created by</span>
+      <a class="credit-mark" href="https://links.greenflashusa.com" target="_blank" rel="noopener noreferrer">
+        <img src="/assets/greenflash.png" alt="Green Flash Advertising" width="320" height="214" loading="lazy" decoding="async" />
+      </a>
+      <a class="credit-url" href="https://links.greenflashusa.com" target="_blank" rel="noopener noreferrer">links.greenflashusa.com</a>
+    </div>
   </footer>
 </main>
 
