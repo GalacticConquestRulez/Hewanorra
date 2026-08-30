@@ -34,7 +34,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" />
 
 <!-- Structured data. Only facts that appear on this page or the main site:
      no opening hours and no aggregateRating, since neither is shown here and
@@ -704,18 +704,35 @@
   /* Both need the extra .foot specificity: `.foot a` sets its own size,
      colour and underline. */
   .foot .credit-mark {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     line-height: 0;
     border-bottom: 0;
   }
 
+  /* This artwork carries its own alpha, so it needs no blend mode — it sits
+     on the footage cleanly on its own. */
   .foot .credit-mark img {
     display: block;
-    width: 5rem;
-    max-width: 30vw;
+    width: 3.4rem;
+    max-width: 18vw;
     height: auto;
-    mix-blend-mode: screen;
   }
+
+  .credit-wordmark {
+    font-family: var(--body);
+    font-weight: 800;
+    font-style: italic;
+    font-size: 0.98rem;
+    letter-spacing: 0.005em;
+    line-height: 1;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(4, 16, 31, 0.92), 0 0 2px rgba(4, 16, 31, 0.7);
+  }
+
+  .credit-wordmark .wm-green { color: #c3ccd6; }
+  .credit-wordmark .wm-flash { color: #3ddd15; }
 
   .foot .credit-mark:focus-visible { outline: 2px solid var(--flash); outline-offset: 4px; border-radius: 4px; }
 
@@ -1054,7 +1071,10 @@
     <div class="credit">
       <span class="credit-label">Created by</span>
       <a class="credit-mark" href="https://links.greenflashusa.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/greenflash.png" alt="Green Flash Advertising" width="320" height="214" loading="lazy" decoding="async" />
+        <!-- Decorative: the wordmark beside it already names the agency, so
+             alt text here would have a screen reader say it twice. -->
+        <img src="/assets/greenflash.png" alt="" width="200" height="134" loading="lazy" decoding="async" />
+        <span class="credit-wordmark"><span class="wm-green">GREEN</span><span class="wm-flash">FLASH</span></span>
       </a>
       <a class="credit-url" href="https://links.greenflashusa.com" target="_blank" rel="noopener noreferrer">links.greenflashusa.com</a>
     </div>
