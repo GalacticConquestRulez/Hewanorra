@@ -11,7 +11,7 @@
 set -euo pipefail
 
 DOMAIN="link.hewanorraexpress.com"
-WEB_ROOT="/var/www/hewanorra-link"
+WEB_ROOT="/var/www/Hewanorra"
 AVAIL="/etc/nginx/sites-available/${DOMAIN}"
 ENABLED="/etc/nginx/sites-enabled/${DOMAIN}"
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

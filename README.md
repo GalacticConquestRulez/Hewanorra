@@ -17,7 +17,7 @@ assets/og.jpg         link-preview image
 ## Hosting
 
 Runs on the Green Flash droplet, alongside `greenflashusa.com` and
-`links.greenflashusa.com`, from `/var/www/hewanorra-link`.
+`links.greenflashusa.com`, from `/var/www/Hewanorra`.
 
 The domain belongs to the client; the server does not. Their web guy points
 the subdomain here with a single DNS record, and deploys stay on our side:

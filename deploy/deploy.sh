@@ -9,7 +9,7 @@
 set -euo pipefail
 
 TARGET="${1:?Usage: deploy.sh user@your-droplet-ip}"
-REMOTE_ROOT="/var/www/hewanorra-link"
+REMOTE_ROOT="/var/www/Hewanorra"
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 cd "${REPO_ROOT}"
