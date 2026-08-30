@@ -26,6 +26,18 @@ the subdomain here with a single DNS record, and deploys stay on our side:
 | ---- | ------- | ------------------ |
 | A    | `link`  | `159.223.127.113`  |
 
+## Where things live
+
+Two separate locations, which is easy to trip over:
+
+| | |
+| --- | --- |
+| `/root/Hewanorra` (or wherever you clone) | the **source** checkout — git, deploy scripts |
+| `/var/www/Hewanorra` | what nginx actually **serves** |
+
+Cloning the repo does not publish the site. A deploy step copies the page
+and its assets from the checkout into the web root.
+
 ## First-time setup
 
 On the droplet, from a checkout of this repo:
@@ -46,14 +58,22 @@ certbot --nginx -d link.hewanorraexpress.com
 
 ## Deploying a change
 
-From your machine:
+Two ways, depending on where you are. Both copy `index.html` and `assets/`
+into `/var/www/Hewanorra` — there is nothing to build.
+
+On the droplet, from a checkout:
+
+```bash
+git pull && sudo bash deploy/deploy-local.sh
+```
+
+Or from your own machine, over rsync:
 
 ```bash
 ./deploy/deploy.sh root@159.223.127.113
 ```
 
-Nothing to build — it rsyncs `index.html` and `assets/` up. `--delete` is
-scoped to this site's own root.
+`--delete` on the rsync path is scoped to this site's own root.
 
 ## Editing the page
 
